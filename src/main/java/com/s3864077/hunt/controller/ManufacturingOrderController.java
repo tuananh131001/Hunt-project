@@ -1,4 +1,6 @@
 package com.s3864077.hunt.controller;
+import com.s3864077.hunt.model.ManufacturingOrder;
+import com.s3864077.hunt.service.ManufacturingOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/manufacturing-orders")
+@RequestMapping("/mo")
 public class ManufacturingOrderController {
 
     private final ManufacturingOrderService manufacturingOrderService;
@@ -43,12 +45,12 @@ public class ManufacturingOrderController {
     }
 
     @PostMapping
-    public ResponseEntity<ManufacturingOrder> createManufacturingOrder(@Valid @RequestBody ManufacturingOrder manufacturingOrder) {
+    public ResponseEntity<ManufacturingOrder> createManufacturingOrder(@Validated @RequestBody ManufacturingOrder manufacturingOrder) {
         return new ResponseEntity<>(manufacturingOrderService.createManufacturingOrder(manufacturingOrder), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ManufacturingOrder> updateManufacturingOrder(@PathVariable Long id, @Valid @RequestBody ManufacturingOrder manufacturingOrder) {
+    public ResponseEntity<ManufacturingOrder> updateManufacturingOrder(@PathVariable Long id, @Validated @RequestBody ManufacturingOrder manufacturingOrder) {
         Optional<ManufacturingOrder> existingManufacturingOrder = manufacturingOrderService.getManufacturingOrderById(id);
         if (existingManufacturingOrder.isPresent()) {
             manufacturingOrder.setId(id);

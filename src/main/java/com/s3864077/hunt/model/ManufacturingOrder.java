@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-@Table(name="Product")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -18,7 +18,6 @@ public class ManufacturingOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private LocalDate date;
 
     private LocalDate deliveryDate;
@@ -27,11 +26,10 @@ public class ManufacturingOrder {
 
     private LocalDate expectedCompletion;
 
-    @Column(nullable = false)
     private String clientName;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "manufacturing_order_id")
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "manufacturing_order_product_id")
     private List<ManufacturingOrderProduct> products;
 
     //getters and setters

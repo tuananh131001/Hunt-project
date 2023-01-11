@@ -4,7 +4,6 @@ import com.s3864077.hunt.enums.PurchaseOrderStatus;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 @Builder
 @Getter
@@ -13,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class MaterialPurchaseOrder {
+public class MaterialsPurchaseOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,7 +25,6 @@ public class MaterialPurchaseOrder {
     @JoinColumn(name = "materials_purchase_order_id")
     private List<PurchaseOrderProduct> products;
 
-    @Column(nullable = false)
     private PurchaseOrderStatus status;
 
     //getters and setters
