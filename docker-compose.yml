@@ -1,0 +1,19 @@
+services:
+  database-hunt:
+    container_name: database-hunt
+    image: postgres
+    environment:
+      POSTGRES_DB: hunt
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - my-db-hunt:/data/postgres
+    ports:
+      - "3306:5432"
+    restart: always
+    networks:
+      - hunt-network
+volumes:
+  my-db-hunt:
+networks:
+  hunt-network:
