@@ -22,7 +22,7 @@ public class MaterialsPurchaseOrder {
     private ManufacturingOrder manufacturingOrder;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "materials_purchase_order_id")
+    @JoinColumn(name = "purchase_order_product_id")
     private List<PurchaseOrderProduct> products;
 
     private PurchaseOrderStatus status;

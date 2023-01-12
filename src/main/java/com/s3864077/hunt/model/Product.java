@@ -35,4 +35,6 @@ public class Product {
     @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<BillOfMaterial> billOfMaterialList;
+
+
 }

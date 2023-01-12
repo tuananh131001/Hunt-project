@@ -1,6 +1,8 @@
 package com.s3864077.hunt.service.impl;
 
 import com.s3864077.hunt.model.Product;
+import com.s3864077.hunt.model.ProductCategory;
+import com.s3864077.hunt.repository.ProductCategoryRepository;
 import com.s3864077.hunt.repository.ProductRepository;
 import com.s3864077.hunt.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +18,7 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-
+    private final ProductCategoryRepository productCategoryRepository;
     public List<Product> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable).getContent();
     }

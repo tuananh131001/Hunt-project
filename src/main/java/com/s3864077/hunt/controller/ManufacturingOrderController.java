@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/mo")
 public class ManufacturingOrderController {
 
@@ -30,7 +31,7 @@ public class ManufacturingOrderController {
             @RequestParam(value = "size", defaultValue = "10") int size,
             @RequestParam(value = "sort", defaultValue = "ASC") Sort.Direction sort) {
 
-        Pageable pageable = PageRequest.of(page, size, sort);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort, "id"));
         return new ResponseEntity<>(manufacturingOrderService.getAllManufacturingOrders(pageable), HttpStatus.OK);
     }
 
