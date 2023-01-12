@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface ProductService {
     List<Product> getAllProducts(Pageable pageable);
 
+    List<Product> searchProducts(Pageable pageable, String name);
+
     Optional<Product> getProductById(Long id);
 
     Product createProduct(Product product);

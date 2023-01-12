@@ -35,6 +35,17 @@ public class ProductController {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sort, "name"));
         return new ResponseEntity<>(productService.getAllProducts(pageable), HttpStatus.OK);
     }
+    // search by name
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "sort", defaultValue = "ASC") Sort.Direction sort,
+            @RequestParam(value = "name", defaultValue = "") String name) {
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort, "name"));
+        return new ResponseEntity<>(productService.searchProducts(pageable, name), HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {

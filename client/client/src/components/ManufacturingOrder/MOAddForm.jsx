@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { usePostMO } from "../../hooks/useFetch";
 
 function MOAddForm() {
   const {
@@ -12,12 +13,15 @@ function MOAddForm() {
     formState: { errors },
   } = useForm();
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const mutation = usePostMO();
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
   const onSubmit = (data) => {
     // Your form submission logic here
     console.log(data);
+    mutation.mutate(data);
+
   };
 
   return (

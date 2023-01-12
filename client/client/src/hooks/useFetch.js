@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getMO } from "../api/MoAPI";
+import { getMO, postMO } from "../api/MoAPI";
 import { getProduct, postProduct } from "../api/productAPI";
 import { getProductCategory, postProductCategory } from "../api/productCategoryAPI";
-
+// GET
 const useGetProduct = (onSuccess, onError) => {
   return useQuery(["product"], getProduct, {
     onSuccess: onSuccess,
@@ -15,6 +15,23 @@ const useGetMO= (onSuccess, onError) => {
     onError: onError,
   });
 };
+// Custom hook get hotel
+const useGetProductCategory = (onSuccess, onError) => {
+  return useQuery(["productCategory"], getProductCategory, {
+    onSuccess: onSuccess,
+    onError: onError,
+  });
+};
+//POST
+const usePostMO = (onSuccess, onError) => {
+  const queryClient = useQueryClient();
+  return useMutation((data) => postMO(data), {
+    onSuccess: (data) => {
+      queryClient.invalidateQueries("MO");
+    },
+    onError: onError,
+  });
+};
 const usePostProduct = (onSuccess, onError) => {
   const queryClient = useQueryClient();
   return useMutation((data) => postProduct(data), {
@@ -24,15 +41,6 @@ const usePostProduct = (onSuccess, onError) => {
     onError: onError,
   });
 };
-
-// Custom hook get hotel
-const useGetProductCategory = (onSuccess, onError) => {
-  return useQuery(["productCategory"], getProductCategory, {
-    onSuccess: onSuccess,
-    onError: onError,
-  });
-};
-
 // post product
 const usePostProductCategory = (onSuccess, onError) => {
   const queryClient = useQueryClient();
@@ -45,4 +53,4 @@ const usePostProductCategory = (onSuccess, onError) => {
   });
 };
 
-export {useGetMO, useGetProductCategory,usePostProductCategory,useGetProduct,usePostProduct };
+export {usePostMO,useGetMO, useGetProductCategory,usePostProductCategory,useGetProduct,usePostProduct };

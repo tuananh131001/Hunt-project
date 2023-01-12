@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p where lower(p.name) like lower(concat('%',:name,'%'))")
@@ -16,5 +18,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findByCode(@Param("code") String code, Pageable pageable);
 
     Page<Product> findByCategory_Name(String category, Pageable pageable);
+
+    //findByNameContainingIgnoreCase
+    @Query("SELECT p FROM Product p where lower(p.name) like lower(concat('%',:name,'%'))")
+    List<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
 }
 

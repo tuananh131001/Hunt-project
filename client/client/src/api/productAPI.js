@@ -6,8 +6,12 @@ const getProduct = () =>
     return res.data;
   });
 const postProduct = (data) =>
-  axios.post(HOST+ "/products", data).then((res) => {
+  axios.post(HOST + "/products", data).then((res) => {
     console.log(res);
     return res.data;
   });
-  export { getProduct, postProduct };
+const filterProduct = (filter) =>
+  axios.get(HOST + `/products/search?name=${filter}`).then((res) => {
+    return res.data;
+  });
+export { getProduct, postProduct,filterProduct };

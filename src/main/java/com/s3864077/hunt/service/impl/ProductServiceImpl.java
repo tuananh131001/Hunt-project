@@ -19,6 +19,10 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductCategoryRepository productCategoryRepository;
+    @Override
+    public List<Product> searchProducts(Pageable pageable, String name){
+        return productRepository.findByNameContainingIgnoreCase(name, pageable);
+    }
     public List<Product> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable).getContent();
     }

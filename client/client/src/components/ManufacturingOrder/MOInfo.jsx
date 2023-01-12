@@ -31,7 +31,7 @@ function MOInfo({ moData }) {
               Client Name: {clientName ? clientName : ""}
             </Typography>
             <Typography variant="h5" gutterBottom>
-              Date of Delivery: {deliveryDate?.toLocaleDateString()}
+              Date of Delivery: {deliveryDate}
             </Typography>
             <TableContainer>
               <Table stickyHeader aria-label="sticky table">
@@ -54,11 +54,11 @@ function MOInfo({ moData }) {
               </Table>
             </TableContainer>
             <Typography variant="h5" gutterBottom>
-              Date of Start: {startDate?.toLocaleDateString()}
+              Date of Start: {startDate}
             </Typography>
             <Typography variant="h5" gutterBottom>
               Date of Expected Completion:{" "}
-              {expectedCompletion?.toLocaleDateString()}
+              {expectedCompletion}
             </Typography>
           </>
         )
