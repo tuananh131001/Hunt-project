@@ -61,7 +61,7 @@ const UpdateProduct = (props) => {
     event.preventDefault();
     try {
       console.log(formData);
-      await axios.put(API_ORIGIN + `/products/${params.id}`, formData);
+      await axios.put( `/api/products/${params.id}`, formData);
       navigate(-1);
       // props.history.push("/products");
     } catch (error) {
