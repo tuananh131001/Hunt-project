@@ -17,7 +17,7 @@ public class ApplicationStartUp {
     private final ProductCategoryRepository productCategoryRepository;
 
     @Bean
-    public CommandLineRunner loadData(MaterialsPurchaseOrderRepository materialsPurchaseOrderRepository, ManufacturingOrderProductRepository manufacturingOrderProductRepository, ManufacturingOrderRepository manufacturingOrderRepository, BillOfMaterialRepository billOfMaterialRepository, ProductCategoryRepository productCategoryRepository, ProductRepository productRepository) {
+    public CommandLineRunner loadData(ComponentRepository componentRepository , MaterialsPurchaseOrderRepository materialsPurchaseOrderRepository, ManufacturingOrderProductRepository manufacturingOrderProductRepository, ManufacturingOrderRepository manufacturingOrderRepository, BillOfMaterialRepository billOfMaterialRepository, ProductCategoryRepository productCategoryRepository, ProductRepository productRepository) {
         return (args) -> {
             List<ProductCategory> category = productCategoryRepository.findAll();
             List<Product> products = productRepository.findAll();
@@ -39,6 +39,12 @@ public class ApplicationStartUp {
                 Product product9 = productRepository.save(Product.builder().name("Apple Watch").category(category2).build());
                 Product product10 = productRepository.save(Product.builder().name("Apple Pencil").category(category3).build());
                 Product product11 = productRepository.save(Product.builder().name("Apple TV 4K").category(category4).build());
+                com.s3864077.hunt.model.Component component1 = componentRepository.save(com.s3864077.hunt.model.Component.builder().name("CPU").parentProduct(product1).build());
+                com.s3864077.hunt.model.Component component2 = componentRepository.save(com.s3864077.hunt.model.Component.builder().name("GPU").parentProduct(product1).build());
+                com.s3864077.hunt.model.Component component3 = componentRepository.save(com.s3864077.hunt.model.Component.builder().name("RAM").parentProduct(product1).build());
+                com.s3864077.hunt.model.Component component4 = componentRepository.save(com.s3864077.hunt.model.Component.builder().name("SCREEN").parentProduct(product2).build());
+                com.s3864077.hunt.model.Component component5 = componentRepository.save(com.s3864077.hunt.model.Component.builder().name("CPU").parentProduct(product2).build());
+                com.s3864077.hunt.model.Component component6 = componentRepository.save(com.s3864077.hunt.model.Component.builder().name("RAM").parentProduct(product2).build());
                 billOfMaterialRepository.save(BillOfMaterial.builder().name("MacBook bill").product(product1).build());
                 billOfMaterialRepository.save(BillOfMaterial.builder().name("iPhone bill").product(product2).build());
                 billOfMaterialRepository.save(BillOfMaterial.builder().name("iPad bill").product(product3).build());

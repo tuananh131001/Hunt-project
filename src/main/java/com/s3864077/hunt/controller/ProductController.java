@@ -66,6 +66,17 @@ public class ProductController {
             return "Product creation failed";
         }
     }
+    // add component
+    @PutMapping("/component/add")
+    public String addComponent(@RequestParam(value = "parentId", defaultValue = "") Long parent,
+                               @RequestParam(value = "childName", defaultValue = "") String name) {
+        try {
+            productService.addComponent(parent, name);
+            return "Component added successfully";
+        } catch (Exception e) {
+            return "Component addition failed";
+        }
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Validated @RequestBody Product product) {

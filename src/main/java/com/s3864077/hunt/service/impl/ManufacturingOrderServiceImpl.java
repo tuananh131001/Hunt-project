@@ -4,6 +4,7 @@ import com.s3864077.hunt.model.ManufacturingOrder;
 import com.s3864077.hunt.repository.ManufacturingOrderRepository;
 import com.s3864077.hunt.service.ManufacturingOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,13 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService 
     }
 
     @Override
+    @Cacheable("MO")
     public List<ManufacturingOrder> getAllManufacturingOrders(Pageable pageable) {
         return manufacturingOrderRepository.findAll(pageable).getContent();
     }
 
     @Override
+    @Cacheable("MO")
     public Optional<ManufacturingOrder> getManufacturingOrderById(Long id) {
         return manufacturingOrderRepository.findById(id);
     }

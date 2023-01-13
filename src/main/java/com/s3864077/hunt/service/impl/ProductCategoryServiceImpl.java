@@ -6,6 +6,7 @@ import com.s3864077.hunt.repository.ProductCategoryRepository;
 import com.s3864077.hunt.repository.ProductRepository;
 import com.s3864077.hunt.service.ProductCategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,13 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     // getAllProductsByCategory
     @Override
+    @Cacheable("ProductCategory")
     public Page<ProductCategory> getAllProductsByCategory(String category, Pageable pageable){
         return productCategoryRepository.findProductCategoriesByNameContainingIgnoreCase(category, pageable);
     }
 
     @Override
+    @Cacheable("ProductCategory")
     public Optional<ProductCategory> getProductCategoryById(Long id) {
         return productCategoryRepository.findById(id);
     }

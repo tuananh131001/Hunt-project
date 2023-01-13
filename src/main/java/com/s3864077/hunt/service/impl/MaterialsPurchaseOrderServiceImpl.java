@@ -4,6 +4,7 @@ import com.s3864077.hunt.model.MaterialsPurchaseOrder;
 import com.s3864077.hunt.repository.MaterialsPurchaseOrderRepository;
 import com.s3864077.hunt.service.MaterialsPurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,13 @@ public class MaterialsPurchaseOrderServiceImpl implements MaterialsPurchaseOrder
     }
 
     @Override
+    @Cacheable("MPO")
     public List<MaterialsPurchaseOrder> getAllMaterialsPurchaseOrders(Pageable pageable) {
         return materialsPurchaseOrderRepository.findAll(pageable).getContent();
     }
 
     @Override
+    @Cacheable("MPO")
     public Optional<MaterialsPurchaseOrder> getMaterialsPurchaseOrderById(Long id) {
         return materialsPurchaseOrderRepository.findById(id);
     }

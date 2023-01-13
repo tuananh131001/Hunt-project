@@ -4,6 +4,8 @@ import com.s3864077.hunt.model.BillOfMaterial;
 import com.s3864077.hunt.repository.BillOfMaterialRepository;
 import com.s3864077.hunt.service.BillOfMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +23,13 @@ public class BillOfMaterialServiceImpl implements BillOfMaterialService {
     }
 
     @Override
-    public List<BillOfMaterial> getAllBillOfMaterials(Pageable pageable) {
-        return billOfMaterialRepository.findAll(pageable).getContent();
+    @Cacheable("BillOfMaterial")
+    public Page<BillOfMaterial> getAllBillOfMaterials(Pageable pageable) {
+        return billOfMaterialRepository.findAll(pageable);
     }
 
     @Override
+    @Cacheable("BillOfMaterial")
     public Optional<BillOfMaterial> getBillOfMaterialById(Long id) {
         return billOfMaterialRepository.findById(id);
     }

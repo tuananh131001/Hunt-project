@@ -16,6 +16,8 @@ public interface ProductService {
     Page<Product> searchProducts( String name,Pageable pageable);
 
     Optional<Product> getProductById(Long id);
+    // add component
+    void addComponent(Long id, String componentId) throws JsonProcessingException;
 
     void createProduct(Product product) throws JsonProcessingException;
 

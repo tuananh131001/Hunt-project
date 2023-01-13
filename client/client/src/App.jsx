@@ -8,6 +8,8 @@ import ProductSearch from "./components/Product/ProductSearch";
 import ProductFilter from "./components/Product/ProductFilter";
 import UpdateProduct from "./components/Product/UpdateProduct";
 import DeleteProduct from "./components/Product/DeleteProduct";
+import BOMDisplayAll from "./components/BillOfMaterial/BOMDisplayAll";
+import BOMDetail from "./components/BillOfMaterial/BOMDetail";
 
 function App() {
   return (
@@ -25,6 +27,10 @@ function App() {
 
           <Route path="/mo" element={<ManufacturingOrder />}></Route>
           <Route path="/mo/add" element={<MOAddPage />}></Route>
+          {/* BOM */}
+          <Route path="/bom" element={<BOMDisplayAll />}></Route>
+          <Route path="/bom/:id" element={<BOMDetail />}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>

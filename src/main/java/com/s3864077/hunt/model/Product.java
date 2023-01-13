@@ -33,9 +33,16 @@ public class Product {
     @JoinColumn(name = "category_id")
     private ProductCategory category;
 
+    @JsonIgnoreProperties("parentProduct")
+    @OneToMany(mappedBy = "parentProduct", cascade = CascadeType.ALL)
+    private List<Component> components;
+
     @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<BillOfMaterial> billOfMaterialList;
+    private List<BillOfMaterial> billOfMaterials;
 
 
+    public void addComponent(org.springframework.stereotype.Component componentToAdd) {
+        components.add((Component) componentToAdd);
+    }
 }

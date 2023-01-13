@@ -3,6 +3,7 @@ package com.s3864077.hunt.controller;
 import com.s3864077.hunt.model.BillOfMaterial;
 import com.s3864077.hunt.service.BillOfMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -27,11 +28,11 @@ public class BillOfMaterialController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BillOfMaterial>> getAllBillOfMaterials(
+    public ResponseEntity<Page<BillOfMaterial>> getAllBillOfMaterials(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size,
             @RequestParam(value = "sort", defaultValue = "ASC") Sort.Direction sort) {
-        Pageable pageable = PageRequest.of(page, size, sort);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort, "id"));
         return new ResponseEntity<>(billOfMaterialService.getAllBillOfMaterials(pageable), HttpStatus.OK);
     }
 
