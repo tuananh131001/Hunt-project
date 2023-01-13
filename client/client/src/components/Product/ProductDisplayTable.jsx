@@ -10,7 +10,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PaginationControls from "../PaginationControls";
-const API_ORIGIN = import.meta.env.VITE_REACT_APP_API_ORIGIN;
+const API_ORIGIN = import.meta.env.VITE_REACT_APP_API_ORIGIN || "/api";
 function ProductDisplayTable() {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(10);
