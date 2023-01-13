@@ -10,6 +10,8 @@ import UpdateProduct from "./components/Product/UpdateProduct";
 import DeleteProduct from "./components/Product/DeleteProduct";
 import BOMDisplayAll from "./components/BillOfMaterial/BOMDisplayAll";
 import BOMDetail from "./components/BillOfMaterial/BOMDetail";
+import DeleteBOM from "./components/BillOfMaterial/DeleteBOM";
+import UpdateBOM from "./components/BillOfMaterial/UpdateBOM";
 
 function App() {
   return (
@@ -30,6 +32,9 @@ function App() {
           {/* BOM */}
           <Route path="/bom" element={<BOMDisplayAll />}></Route>
           <Route path="/bom/:id" element={<BOMDetail />}></Route>
+          <Route path="/bom/delete/:id" element={<DeleteBOM />}></Route>
+          <Route path="/bom/edit/:id" element={<UpdateBOM />}></Route>
+
 
         </Routes>
       </BrowserRouter>

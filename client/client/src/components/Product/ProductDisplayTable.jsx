@@ -61,7 +61,7 @@ function ProductDisplayTable() {
                 <TableCell>{product.code}</TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.description}</TableCell>
-                <TableCell>{product.category.name}</TableCell>
+                <TableCell>{product.category?.name}</TableCell>
                 <TableCell>
                   <Link to={`/product/update/${product.id}`}>Edit</Link>
                 </TableCell>

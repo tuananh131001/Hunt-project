@@ -3,27 +3,27 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetProductCategory } from "../../hooks/useFetch";
 const API_ORIGIN = import.meta.env.VITE_REACT_APP_API_ORIGIN;
-const UpdateProduct = (props) => {
+const UpdateBOM = (props) => {
   const [product, setProduct] = useState();
+  const [bom, setBOM] = useState();
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    code: "",
     name: "",
-    description: "",
-    category: 0,
+    product: "",
   });
   const params = useParams();
-  const { data: productsCategory, status } = useGetProductCategory();
   const getProduct = async () => {
     try {
-      const response = await axios.get(API_ORIGIN + `/products/${params.id}`);
-      setProduct(response.data);
+      const responseProduct = await axios.get(API_ORIGIN + `/products?size=100`);
+      setProduct(responseProduct.data);
+      console.log(product)
+      const response = await axios.get(API_ORIGIN + `/bom/${params.id}`);
+      setBOM(response.data);
       setFormData({
-        code: response.data.code,
         name: response.data.name,
-        description: response.data.description,
-        category: {
-          id: response.data.category.id,
+        product: {
+          id: response.data.product.id
         },
       });
     } catch (error) {
@@ -34,14 +34,7 @@ const UpdateProduct = (props) => {
     // Call the API to get the product information
     getProduct();
   }, []);
-  if (status == "loading") {
-    return <p>Loading...</p>;
-  }
-  if (status == "error") {
-    return <p>Error...</p>;
-  }
   const handleChange = (event) => {
-
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
@@ -51,8 +44,11 @@ const UpdateProduct = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log(formData);
-      await axios.put(API_ORIGIN + `/products/${params.id}`, formData);
+      console.log(formData)
+      await axios.put(
+        API_ORIGIN + `/bom/${params.id}`,
+        formData
+      );
       navigate(-1);
       // props.history.push("/products");
     } catch (error) {
@@ -64,15 +60,7 @@ const UpdateProduct = (props) => {
     <div>
       <h1>Update Product</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Code:</label>
-          <input
-            type="number"
-            name="code"
-            value={formData.code}
-            onChange={handleChange}
-          />
-        </div>
+      
         <div>
           <label>Name:</label>
           <input
@@ -82,23 +70,19 @@ const UpdateProduct = (props) => {
             onChange={handleChange}
           />
         </div>
+        
         <div>
-          <label>Description:</label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Category:</label>
+          <label>Product:</label>
           <select
-            name="category"
-            value={formData.category.id}
+            name="product"
+            value={formData.product.id}
             onChange={handleChange}
           >
-            {productsCategory.content?.map((category) => (
-              <option type="number" key={category.id} value={category.id}>
+            {product?.content?.map((category) => (
+              <option
+                key={category.id}
+                value={category.id}
+              >
                 {category.name}
               </option>
             ))}{" "}
@@ -110,4 +94,4 @@ const UpdateProduct = (props) => {
     </div>
   );
 };
-export default UpdateProduct;
+export default UpdateBOM;

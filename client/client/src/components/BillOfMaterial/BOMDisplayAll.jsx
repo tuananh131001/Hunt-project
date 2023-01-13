@@ -46,6 +46,8 @@ function BOMDisplayAll() {
           <TableRow>
             <TableCell>ID</TableCell>
             <TableCell>Name</TableCell>
+            <TableCell>Product</TableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,8 +58,15 @@ function BOMDisplayAll() {
                   {product.id}
                 </TableCell>
                 <TableCell>{product.name}</TableCell>
+                <TableCell>{product.product.name}</TableCell>
                 <TableCell>
                   <Link to={`/bom/${product.id}`}>View</Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/bom/delete/${product.id}`}>Delete</Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/bom/edit/${product.id}`}>Edit</Link>
                 </TableCell>
               </TableRow>
             ))}
