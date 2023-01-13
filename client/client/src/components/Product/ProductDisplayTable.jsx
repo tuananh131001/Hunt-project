@@ -1,4 +1,11 @@
-import { Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -15,9 +22,9 @@ function ProductDisplayTable() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("products?page=" + currentPage );
-        console.log(response)
-        setProductsPage(response.data)
+        const response = await axios.get("/api/products?page=" + currentPage);
+        console.log(response);
+        setProductsPage(response.data);
         setProducts(response.data.content);
       } catch (error) {
         console.log(error);
@@ -34,9 +41,9 @@ function ProductDisplayTable() {
     }
   };
 
-  const handlePageChange = (e,value) => {
-    console.log(value-1)
-    setCurrentPage(value-1);
+  const handlePageChange = (e, value) => {
+    console.log(value - 1);
+    setCurrentPage(value - 1);
   };
 
   return (
