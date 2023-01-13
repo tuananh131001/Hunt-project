@@ -22,7 +22,7 @@ function ProductDisplayTable() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("/api/products?page=" + currentPage);
+        const response = await axios.get(API_ORIGIN+"/products?page=" + currentPage);
         console.log(response);
         setProductsPage(response.data);
         setProducts(response.data.content);
