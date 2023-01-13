@@ -16,7 +16,7 @@ const AddBOM = (props) => {
   const getProduct = async () => {
     try {
       const responseProduct = await axios.get(
-        API_ORIGIN + `/products?size=100`
+        `/api/products?size=100`
       );
       setProduct(responseProduct.data);
     
@@ -49,7 +49,7 @@ const AddBOM = (props) => {
     event.preventDefault();
     try {
       console.log(formData);
-      await axios.post(API_ORIGIN + `/bom`, formData);
+      await axios.post(`/api/bom`, formData);
       navigate(-1);
       // props.history.push("/products");
     } catch (error) {

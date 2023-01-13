@@ -17,7 +17,7 @@ const ProductFilter = () => {
   const getProducts = async () => {
     try {
       const response = await axios.get(
-        API_ORIGIN + `/products/category?category=${selectedCategory}`
+         `/api/products/category?category=${selectedCategory}`
       );
       console.log(response);
       setProducts(response.data.content);

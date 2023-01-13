@@ -16,11 +16,11 @@ const UpdateBOM = (props) => {
   const getProduct = async () => {
     try {
       const responseProduct = await axios.get(
-        API_ORIGIN + `/products?size=100`
+         `/api/products?size=100`
       );
       setProduct(responseProduct.data);
       console.log(product);
-      const response = await axios.get(API_ORIGIN + `/bom/${params.id}`);
+      const response = await axios.get(`/api/bom/${params.id}`);
       setBOM(response.data);
       setFormData({
         name: response.data.name,
@@ -57,7 +57,7 @@ const UpdateBOM = (props) => {
     event.preventDefault();
     try {
       console.log(formData);
-      await axios.put(API_ORIGIN + `/bom/${params.id}`, formData);
+      await axios.put(`/api/bom/${params.id}`, formData);
       navigate(-1);
       // props.history.push("/products");
     } catch (error) {

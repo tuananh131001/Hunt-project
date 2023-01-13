@@ -8,7 +8,7 @@ function DeleteBOM() {
   const params = useParams();
   const handleDelete = async (id) => {
     try {
-      await axios.delete(API_ORIGIN + `/bom/${params.id}`);
+      await axios.delete( `/api/bom/${params.id}`);
       // refresh the product list after delete
       navigate(-1);
     } catch (error) {

@@ -18,7 +18,7 @@ const BOMDetail = () => {
   const params = useParams();
   const getProduct = async () => {
     try {
-      const response = await axios.get(API_ORIGIN + `/bom/${params.id}`);
+      const response = await axios.get(`/api/bom/${params.id}`);
       console.log(response);
       setBomData(response.data);
     } catch (error) {
@@ -51,8 +51,7 @@ const BOMDetail = () => {
       }
     await axios
       .put(
-        API_ORIGIN +
-          `/products/component/add?parentId=${bomData?.product.id}&childName=${component.name}`
+          `/api/products/component/add?parentId=${bomData?.product.id}&childName=${component.name}`
       )
       .then((response) => {
         console.log(response);

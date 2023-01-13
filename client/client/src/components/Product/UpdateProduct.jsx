@@ -16,7 +16,7 @@ const UpdateProduct = (props) => {
   const { data: productsCategory, status } = useGetProductCategory();
   const getProduct = async () => {
     try {
-      const response = await axios.get(API_ORIGIN + `/products/${params.id}`);
+      const response = await axios.get(`/api/products/${params.id}`);
       setProduct(response.data);
       setFormData({
         code: response.data.code,

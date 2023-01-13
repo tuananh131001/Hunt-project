@@ -8,7 +8,7 @@ function MaterialPurchaseOrderDelete() {
   const params = useParams();
   const handleDelete = async (id) => {
     try {
-      await axios.delete(API_ORIGIN + `/materials-purchase-orders/${params.id}`);
+      await axios.delete(`/api/materials-purchase-orders/${params.id}`);
       // refresh the product list after delete
       navigate(-1);
     } catch (error) {

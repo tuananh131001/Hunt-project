@@ -22,7 +22,7 @@ function ProductDisplayTable() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(API_ORIGIN+"/products?page=" + currentPage);
+        const response = await axios.get("/api/products?page=" + currentPage);
         console.log(response);
         setProductsPage(response.data);
         setProducts(response.data.content);
@@ -35,7 +35,7 @@ function ProductDisplayTable() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(API_ORIGIN + `/products/${id}`);
+      await axios.delete(`/api/products/${id}`);
     } catch (error) {
       console.log(error);
     }

@@ -22,7 +22,7 @@ function MaterialPurchaseOrderDisplay() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          API_ORIGIN + "/materials-purchase-orders?page=" + currentPage
+          "/api/materials-purchase-orders?page=" + currentPage
         );
         console.log(response);
         setProductsPage(response.data);
@@ -35,7 +35,7 @@ function MaterialPurchaseOrderDisplay() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(API_ORIGIN + `/products/${id}`);
+      await axios.delete(`/api/products/${id}`);
     } catch (error) {
       console.log(error);
     }

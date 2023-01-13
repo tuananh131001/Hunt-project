@@ -15,7 +15,7 @@ const ProductSearch = () => {
     try {
       console.log(searchTerm);
       const response = await axios
-        .get(API_ORIGIN + `/products/search?name=${searchTerm}`)
+        .get(`/api/products/search?name=${searchTerm}`)
         .then((response) => {
           setSearchResults(response.data.content);
           console.log(searchResults);
