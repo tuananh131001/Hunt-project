@@ -20,7 +20,7 @@ function DeleteBOM() {
   };
   return (
     <>
-      <h1>Are you sure you want to delete this product?</h1>
+      <h1>Are you sure you want to delete this BOM?</h1>
       <button onClick={() => handleDelete(params.id)}>Delete</button>{" "}
       <button onClick={backButton}>Back</button>
     </>

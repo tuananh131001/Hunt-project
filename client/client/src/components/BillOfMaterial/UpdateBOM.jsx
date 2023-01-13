@@ -67,7 +67,7 @@ const UpdateBOM = (props) => {
 
   return (
     <div>
-      <h1>Update Product</h1>
+      <h1>Update BOM</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
