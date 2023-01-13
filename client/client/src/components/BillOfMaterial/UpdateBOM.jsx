@@ -15,15 +15,17 @@ const UpdateBOM = (props) => {
   const params = useParams();
   const getProduct = async () => {
     try {
-      const responseProduct = await axios.get(API_ORIGIN + `/products?size=100`);
+      const responseProduct = await axios.get(
+        API_ORIGIN + `/products?size=100`
+      );
       setProduct(responseProduct.data);
-      console.log(product)
+      console.log(product);
       const response = await axios.get(API_ORIGIN + `/bom/${params.id}`);
       setBOM(response.data);
       setFormData({
         name: response.data.name,
         product: {
-          id: response.data.product.id
+          id: response.data.product.id,
         },
       });
     } catch (error) {
@@ -35,20 +37,27 @@ const UpdateBOM = (props) => {
     getProduct();
   }, []);
   const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === "product") {
+      setFormData({
+        ...formData,
+        [event.target.name]: {
+          id: event.target.value,
+        },
+      });
+      return;
+    } else {
+      setFormData({
+        ...formData,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log(formData)
-      await axios.put(
-        API_ORIGIN + `/bom/${params.id}`,
-        formData
-      );
+      console.log(formData);
+      await axios.put(API_ORIGIN + `/bom/${params.id}`, formData);
       navigate(-1);
       // props.history.push("/products");
     } catch (error) {
@@ -60,7 +69,6 @@ const UpdateBOM = (props) => {
     <div>
       <h1>Update Product</h1>
       <form onSubmit={handleSubmit}>
-      
         <div>
           <label>Name:</label>
           <input
@@ -70,7 +78,7 @@ const UpdateBOM = (props) => {
             onChange={handleChange}
           />
         </div>
-        
+
         <div>
           <label>Product:</label>
           <select
@@ -79,10 +87,7 @@ const UpdateBOM = (props) => {
             onChange={handleChange}
           >
             {product?.content?.map((category) => (
-              <option
-                key={category.id}
-                value={category.id}
-              >
+              <option key={category.id} value={category.id}>
                 {category.name}
               </option>
             ))}{" "}

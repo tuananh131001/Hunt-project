@@ -41,8 +41,4 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<BillOfMaterial> billOfMaterials;
 
-
-    public void addComponent(org.springframework.stereotype.Component componentToAdd) {
-        components.add((Component) componentToAdd);
-    }
 }

@@ -10,7 +10,7 @@ const UpdateProduct = (props) => {
     code: "",
     name: "",
     description: "",
-    category: 0,
+    category: "",
   });
   const params = useParams();
   const { data: productsCategory, status } = useGetProductCategory();
@@ -41,11 +41,20 @@ const UpdateProduct = (props) => {
     return <p>Error...</p>;
   }
   const handleChange = (event) => {
-
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === "category") {
+      setFormData({
+        ...formData,
+        [event.target.name]: {
+          id: event.target.value,
+        },
+      });
+      return;
+    } else {
+      setFormData({
+        ...formData,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
 
   const handleSubmit = async (event) => {
