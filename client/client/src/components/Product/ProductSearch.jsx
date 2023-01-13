@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Header from "../Header";
 const API_ORIGIN = import.meta.env.VITE_REACT_APP_API_ORIGIN;
 
 const ProductSearch = () => {
@@ -24,7 +25,9 @@ const ProductSearch = () => {
     }
   };
   return (
+    
     <form onSubmit={handleSubmit}>
+      <Header></Header>
       <input
         type="text"
         value={searchTerm}

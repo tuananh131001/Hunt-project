@@ -31,7 +31,7 @@ public class MaterialsPurchaseOrderController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size,
             @RequestParam(value = "sort", defaultValue = "ASC") Sort.Direction sort) {
-        Pageable pageable = PageRequest.of(page, size, sort);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort, "id"));
         return new ResponseEntity<>(materialsPurchaseOrderService.getAllMaterialsPurchaseOrders(pageable), HttpStatus.OK);
     }
 

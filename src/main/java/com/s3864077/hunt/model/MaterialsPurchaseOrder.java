@@ -21,9 +21,9 @@ public class MaterialsPurchaseOrder {
     @JoinColumn(name = "manufacturing_order_id")
     private ManufacturingOrder manufacturingOrder;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "purchase_order_product_id")
-    private List<PurchaseOrderProduct> products;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "purchase_order_product_id")
+//    private List<PurchaseOrderProduct> products;
 
     private PurchaseOrderStatus status;
 

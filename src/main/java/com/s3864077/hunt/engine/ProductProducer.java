@@ -15,7 +15,7 @@ public class ProductProducer {
     private KafkaTemplate<String, String> kafkaTemplate;
     private static final String TOPIC = "products";
 
-    public void send(Product product) throws JsonProcessingException {
+    public void sendProduct(Product product) throws JsonProcessingException {
         kafkaTemplate.send(TOPIC, new ObjectMapper().writeValueAsString(product));
     }
 }

@@ -54,14 +54,23 @@ public class ApplicationStartUp {
                 billOfMaterialRepository.save(BillOfMaterial.builder().name("Mac Pro bill").product(product7).build());
                 ManufacturingOrderProduct manufacturingOrderProduct1 =  ManufacturingOrderProduct.builder().product(product1).quantity(1).build();
                 manufacturingOrderProductRepository.save(manufacturingOrderProduct1);
-                ManufacturingOrderProduct manufacturingOrderProduct2 =  ManufacturingOrderProduct.builder().product(product2).quantity(1).build();
+                ManufacturingOrderProduct manufacturingOrderProduct2 =  ManufacturingOrderProduct.builder().product(product2).quantity(2).build();
                 manufacturingOrderProductRepository.save(manufacturingOrderProduct2);
+                ManufacturingOrderProduct manufacturingOrderProduct3 =  ManufacturingOrderProduct.builder().product(product3).quantity(3).build();
+                manufacturingOrderProductRepository.save(manufacturingOrderProduct3);
+                ManufacturingOrderProduct manufacturingOrderProduct4 =  ManufacturingOrderProduct.builder().product(product4).quantity(4).build();
+                manufacturingOrderProductRepository.save(manufacturingOrderProduct4);
+
 //                ManufacturingOrderProduct manufacturingOrderProduct2 = manufacturingOrderProductRepository.save((ManufacturingOrderProduct.builder().product(product2).quantity(5)).build());
                 List<ManufacturingOrderProduct> manufacturingOrderProducts = List.of(manufacturingOrderProduct1, manufacturingOrderProduct2);
                 //https://stackoverflow.com/questions/13370221/persistentobjectexception-detached-entity-passed-to-persist-thrown-by-jpa-and-h
+                List<ManufacturingOrderProduct> manufacturingOrderProducts1 = List.of(manufacturingOrderProduct3, manufacturingOrderProduct4);
 
-                ManufacturingOrder manufacturingOrder = manufacturingOrderRepository.save(ManufacturingOrder.builder().products(manufacturingOrderProducts).clientName("sir").build());
+                ManufacturingOrder manufacturingOrder = manufacturingOrderRepository.save(ManufacturingOrder.builder().products(manufacturingOrderProducts).clientName("Quang").build());
+                ManufacturingOrder manufacturingOrder1 = manufacturingOrderRepository.save(ManufacturingOrder.builder().products(manufacturingOrderProducts1).clientName("Thanh NN").build());
+
                 MaterialsPurchaseOrder materialsPurchaseOrder = materialsPurchaseOrderRepository.save(MaterialsPurchaseOrder.builder().status( PurchaseOrderStatus.DONE ).manufacturingOrder(manufacturingOrder).build());
+                MaterialsPurchaseOrder materialsPurchaseOrder1 = materialsPurchaseOrderRepository.save(MaterialsPurchaseOrder.builder().status( PurchaseOrderStatus.DRAFT ).manufacturingOrder(manufacturingOrder1).build());
             }
             if (ObjectUtils.isEmpty(category)) {
 

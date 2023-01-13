@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useGetProductCategory } from "../../hooks/useFetch";
+import Header from "../Header";
 
 const ProductFilter = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -27,6 +28,7 @@ const ProductFilter = () => {
 
   return (
     <div>
+      <Header></Header>
       <div>
         <select
           value={selectedCategory}

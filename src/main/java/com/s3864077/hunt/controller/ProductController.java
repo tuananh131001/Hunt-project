@@ -1,8 +1,10 @@
 package com.s3864077.hunt.controller;
 
+import com.s3864077.hunt.engine.ProductProducer;
 import com.s3864077.hunt.model.BillOfMaterial;
 import com.s3864077.hunt.model.Product;
 import com.s3864077.hunt.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,15 +20,12 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
+@RequiredArgsConstructor
 @RequestMapping("/products")
 public class ProductController {
 
     private final ProductService productService;
-
-    @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+    private final ProductProducer productProducer;
 
     @GetMapping
     public Page<Product> getAllProducts(@RequestParam(value = "page", defaultValue = "0") int page,
@@ -60,7 +59,8 @@ public class ProductController {
     @PostMapping
     public String createProduct(@Validated @RequestBody Product product) {
         try {
-            productService.createProduct(product);
+//            productService.createProduct(product);
+            productProducer.sendProduct(product);
             return "Product created successfully";
         } catch (Exception e) {
             return "Product creation failed";

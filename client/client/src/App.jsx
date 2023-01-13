@@ -13,17 +13,25 @@ import BOMDetail from "./components/BillOfMaterial/BOMDetail";
 import DeleteBOM from "./components/BillOfMaterial/DeleteBOM";
 import UpdateBOM from "./components/BillOfMaterial/UpdateBOM";
 import AddBOM from "./components/BillOfMaterial/AddBOM";
+import PrintProduct from "./components/Product/PrintProduct";
+import Header from "./components/Header";
+import MaterialPurchaseOrderDisplay from "./components/MaterialPurchaseOrder/MaterialPurchaseOrderDisplay";
+import MaterialPurchaseOrderDelete from "./components/MaterialPurchaseOrder/MaterialPurchaseOrderDelete";
 
 function App() {
   return (
     <div className="App">
+      
       <BrowserRouter>
         <Routes>
+        
           <Route path="/" exact element={<Home />}></Route>
           <Route path="/product" element={<ProductList />}></Route>
           <Route path="/product/search" element={<ProductSearch />}></Route>
           <Route path="/product/add" element={<AddProduct />}></Route>
           <Route path="/product/filter" element={<ProductFilter />}></Route>
+          <Route path="/product/print" element={<PrintProduct />}></Route>
+
           {/* <Route path="/product/update" element={<UpdateProduct />}></Route> */}
           <Route path="/product/update/:id" element={<UpdateProduct />} />
           <Route path="/product/delete/:id" element={<DeleteProduct />} />
@@ -36,7 +44,9 @@ function App() {
           <Route path="/bom/:id" element={<BOMDetail />}></Route>
           <Route path="/bom/delete/:id" element={<DeleteBOM />}></Route>
           <Route path="/bom/edit/:id" element={<UpdateBOM />}></Route>
-
+          {/* MaterialPurchaseOrderDisplay */}
+          <Route path="/mpo" element={<MaterialPurchaseOrderDisplay/>}></Route>
+          <Route path="/mpo/delete/:id" element={<MaterialPurchaseOrderDelete/>}></Route>
 
         </Routes>
       </BrowserRouter>

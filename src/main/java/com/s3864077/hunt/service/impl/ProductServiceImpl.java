@@ -25,7 +25,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
-    private final String EMPLOYEE_CACHE = "PRODUCT";
+    private final String EMPLOYEE_CACHE = "PRODUCTS";
 
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
@@ -52,6 +52,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public void createProduct(Product product) throws JsonProcessingException {
+//        productProducer.send(product);
         productRepository.save(product);
 
     }
