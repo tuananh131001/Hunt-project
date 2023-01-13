@@ -19,4 +19,10 @@ public class ProductConsumer {
         Product product = new ObjectMapper().readValue(message, Product.class);
         productService.createProduct(product);
     }
+
+    @KafkaListener(topics = "updateProducts", groupId = "group_id")
+    public void listenUpdateProduct(String message) throws JsonProcessingException {
+        Product product = new ObjectMapper().readValue(message, Product.class);
+        productService.updateProduct(product);
+    }
 }

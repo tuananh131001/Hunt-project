@@ -1,5 +1,6 @@
 package com.s3864077.hunt.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.s3864077.hunt.engine.ProductProducer;
 import com.s3864077.hunt.model.BillOfMaterial;
 import com.s3864077.hunt.model.Product;
@@ -79,11 +80,13 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Validated @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Validated @RequestBody Product product) throws JsonProcessingException {
         Optional<Product> existingProduct = productService.getProductById(id);
         if (existingProduct.isPresent()) {
             product.setId(id);
-            return new ResponseEntity<>(productService.updateProduct(product), HttpStatus.OK);
+            productProducer.sendProductUpdate(product);
+            return new ResponseEntity<>(product, HttpStatus.OK);
+//            return new ResponseEntity<>(productService.updateProduct(product), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

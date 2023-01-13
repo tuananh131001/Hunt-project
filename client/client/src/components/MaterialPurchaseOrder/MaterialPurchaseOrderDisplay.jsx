@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Header from "../Header";
 import PaginationControls from "../PaginationControls";
 const API_ORIGIN = import.meta.env.VITE_REACT_APP_API_ORIGIN;
 function MaterialPurchaseOrderDisplay() {
@@ -47,6 +48,7 @@ function MaterialPurchaseOrderDisplay() {
 
   return (
     <Paper sx={{ width: "100%", marginTop: 3, overflowX: "auto" }}>
+      <Header></Header>
       <Table sx={{ minWidth: 650 }}>
         <TableHead>
           <TableRow>

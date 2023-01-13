@@ -17,6 +17,7 @@ import PrintProduct from "./components/Product/PrintProduct";
 import Header from "./components/Header";
 import MaterialPurchaseOrderDisplay from "./components/MaterialPurchaseOrder/MaterialPurchaseOrderDisplay";
 import MaterialPurchaseOrderDelete from "./components/MaterialPurchaseOrder/MaterialPurchaseOrderDelete";
+import InventoryDisplay from "./components/Inventory/InventoryDisplay";
 
 function App() {
   return (
@@ -47,6 +48,8 @@ function App() {
           {/* MaterialPurchaseOrderDisplay */}
           <Route path="/mpo" element={<MaterialPurchaseOrderDisplay/>}></Route>
           <Route path="/mpo/delete/:id" element={<MaterialPurchaseOrderDelete/>}></Route>
+          {/* Inventory */}
+          <Route path="/inventory" element={<InventoryDisplay/>}></Route>
 
         </Routes>
       </BrowserRouter>

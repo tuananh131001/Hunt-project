@@ -15,6 +15,12 @@ function Home() {
       <Button variant="outlined">
         <Link to={"/bom"}>To Bill Of Materials</Link>
       </Button>
+      <Button variant="outlined">
+        <Link to={"/mpo"}>To MPO</Link>
+      </Button>
+      <Button variant="outlined">
+        <Link to={"/inventory"}>To inventory</Link>
+      </Button>
     </Stack>
   );
 }

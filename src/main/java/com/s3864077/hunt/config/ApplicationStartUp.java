@@ -17,7 +17,7 @@ public class ApplicationStartUp {
     private final ProductCategoryRepository productCategoryRepository;
 
     @Bean
-    public CommandLineRunner loadData(ComponentRepository componentRepository , MaterialsPurchaseOrderRepository materialsPurchaseOrderRepository, ManufacturingOrderProductRepository manufacturingOrderProductRepository, ManufacturingOrderRepository manufacturingOrderRepository, BillOfMaterialRepository billOfMaterialRepository, ProductCategoryRepository productCategoryRepository, ProductRepository productRepository) {
+    public CommandLineRunner loadData(InventoryRepository inventoryRepository,ComponentRepository componentRepository , MaterialsPurchaseOrderRepository materialsPurchaseOrderRepository, ManufacturingOrderProductRepository manufacturingOrderProductRepository, ManufacturingOrderRepository manufacturingOrderRepository, BillOfMaterialRepository billOfMaterialRepository, ProductCategoryRepository productCategoryRepository, ProductRepository productRepository) {
         return (args) -> {
             List<ProductCategory> category = productCategoryRepository.findAll();
             List<Product> products = productRepository.findAll();
@@ -45,13 +45,13 @@ public class ApplicationStartUp {
                 com.s3864077.hunt.model.Component component4 = componentRepository.save(com.s3864077.hunt.model.Component.builder().name("SCREEN").parentProduct(product2).build());
                 com.s3864077.hunt.model.Component component5 = componentRepository.save(com.s3864077.hunt.model.Component.builder().name("CPU").parentProduct(product2).build());
                 com.s3864077.hunt.model.Component component6 = componentRepository.save(com.s3864077.hunt.model.Component.builder().name("RAM").parentProduct(product2).build());
-                billOfMaterialRepository.save(BillOfMaterial.builder().name("MacBook bill").product(product1).build());
-                billOfMaterialRepository.save(BillOfMaterial.builder().name("iPhone bill").product(product2).build());
-                billOfMaterialRepository.save(BillOfMaterial.builder().name("iPad bill").product(product3).build());
+                BillOfMaterial billOfMaterial1 = billOfMaterialRepository.save(BillOfMaterial.builder().name("MacBook bill").product(product1).build());
+                BillOfMaterial billOfMaterial2 = billOfMaterialRepository.save(BillOfMaterial.builder().name("iPhone bill").product(product2).build());
+                BillOfMaterial billOfMaterial3 =  billOfMaterialRepository.save(BillOfMaterial.builder().name("iPad bill").product(product3).build());
                 billOfMaterialRepository.save(BillOfMaterial.builder().name("Apple TV bill").product(product4).build());
                 billOfMaterialRepository.save(BillOfMaterial.builder().name("iPod bill").product(product5).build());
                 billOfMaterialRepository.save(BillOfMaterial.builder().name("iMac bill").product(product6).build());
-                billOfMaterialRepository.save(BillOfMaterial.builder().name("Mac Pro bill").product(product7).build());
+                 billOfMaterialRepository.save(BillOfMaterial.builder().name("Mac Pro bill").product(product7).build());
                 ManufacturingOrderProduct manufacturingOrderProduct1 =  ManufacturingOrderProduct.builder().product(product1).quantity(1).build();
                 manufacturingOrderProductRepository.save(manufacturingOrderProduct1);
                 ManufacturingOrderProduct manufacturingOrderProduct2 =  ManufacturingOrderProduct.builder().product(product2).quantity(2).build();
@@ -71,6 +71,10 @@ public class ApplicationStartUp {
 
                 MaterialsPurchaseOrder materialsPurchaseOrder = materialsPurchaseOrderRepository.save(MaterialsPurchaseOrder.builder().status( PurchaseOrderStatus.DONE ).manufacturingOrder(manufacturingOrder).build());
                 MaterialsPurchaseOrder materialsPurchaseOrder1 = materialsPurchaseOrderRepository.save(MaterialsPurchaseOrder.builder().status( PurchaseOrderStatus.DRAFT ).manufacturingOrder(manufacturingOrder1).build());
+                Inventory inventory = inventoryRepository.save(Inventory.builder().billOfMaterial(billOfMaterial1).beginningQuantity(70).totalIn(30).totalOut(10).available(90).build());
+                Inventory inventory2 = inventoryRepository.save(Inventory.builder().billOfMaterial(billOfMaterial2).beginningQuantity(231).totalIn(15).totalOut(20).available(226).build());
+                Inventory inventory3 = inventoryRepository.save(Inventory.builder().billOfMaterial(billOfMaterial3).beginningQuantity(21).totalIn(15).totalOut(25).available(30).build());
+
             }
             if (ObjectUtils.isEmpty(category)) {
 

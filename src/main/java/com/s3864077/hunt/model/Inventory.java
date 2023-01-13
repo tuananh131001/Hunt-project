@@ -3,6 +3,7 @@ package com.s3864077.hunt.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Builder
 @Getter
@@ -24,6 +25,8 @@ public class Inventory {
     private int totalIn;
     private int totalOut;
     private int available;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     public void updateTotalIn(int quantity) {
         this.totalIn += quantity;
