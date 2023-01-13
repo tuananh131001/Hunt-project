@@ -6,6 +6,7 @@ import com.s3864077.hunt.repository.ProductCategoryRepository;
 import com.s3864077.hunt.repository.ProductRepository;
 import com.s3864077.hunt.service.ProductCategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,10 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     private final ProductCategoryRepository productCategoryRepository;
 
+    // getAllProductsByCategory
     @Override
-    public List<ProductCategory> getAllProductsCategory(Pageable pageable) {
-        return productCategoryRepository.findAll(pageable).getContent();
+    public Page<ProductCategory> getAllProductsByCategory(String category, Pageable pageable){
+        return productCategoryRepository.findProductCategoriesByNameContainingIgnoreCase(category, pageable);
     }
 
     @Override

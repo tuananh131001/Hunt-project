@@ -6,6 +6,7 @@ import com.s3864077.hunt.model.ProductCategory;
 import com.s3864077.hunt.service.ProductCategoryService;
 import com.s3864077.hunt.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -29,25 +30,14 @@ public class ProductCategoryController {
             this.productCategoryService = productCategoryService;
         }
 
-        @GetMapping
-        public ResponseEntity<List<ProductCategory>> getAllProducts(
-                @RequestParam(value = "page", defaultValue = "0") int page,
-                @RequestParam(value = "size", defaultValue = "10") int size,
-                @RequestParam(value = "sort", defaultValue = "ASC") Sort.Direction sort) {
-
-            Pageable pageable = PageRequest.of(page, size, Sort.by(sort, "name"));
-            return new ResponseEntity<>(productCategoryService.getAllProductsCategory(pageable), HttpStatus.OK);
+    @GetMapping
+    public Page<ProductCategory> getAllProducts(Pageable pageable, @RequestParam(required = false) String category) {
+        if(category != null) {
+            return productCategoryService.getAllProductsByCategory(category, pageable);
         }
+        return productCategoryService.getAllProductsByCategory("", pageable);
+    }
 
-        @GetMapping("/{id}")
-        public ResponseEntity<ProductCategory> getProductById(@PathVariable Long id) {
-            Optional<ProductCategory> product = productCategoryService.getProductCategoryById(id);
-            if (product.isPresent()) {
-                return new ResponseEntity<>(product.get(), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        }
 
         @PostMapping
         public ResponseEntity<ProductCategory> createProductCategory(@Validated @RequestBody ProductCategory product) {

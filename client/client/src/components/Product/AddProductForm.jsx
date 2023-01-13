@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { usePostProduct } from "../../hooks/useFetch";
 
 const AddProductForm = ({ categories }) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,13 +15,14 @@ const AddProductForm = ({ categories }) => {
     // Make API call to save product to the database here
     console.log(data);
     mutation.mutate(data);
+    navigate(-1)
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label>
         Code:
-        <input name="code" {...register("code", { required: true })} />
+        <input type="number" name="code" {...register("code", { required: true })} />
         {errors.code && <span>This field is required</span>}
       </label>
       <br />
@@ -41,7 +44,7 @@ const AddProductForm = ({ categories }) => {
           {...register("category.id", { required: true })}
         >
           <option value="">Select a category</option>
-          {categories.map((category) => (
+          {categories.content?.map((category) => (
             <option
               key={category.id}
               //         //{

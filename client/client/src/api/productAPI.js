@@ -14,4 +14,4 @@ const filterProduct = (filter) =>
   axios.get(HOST + `/products/search?name=${filter}`).then((res) => {
     return res.data;
   });
-export { getProduct, postProduct,filterProduct };
+export { getProduct, postProduct, filterProduct };

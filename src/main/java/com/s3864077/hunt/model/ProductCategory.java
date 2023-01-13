@@ -1,6 +1,7 @@
 package com.s3864077.hunt.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,7 +24,7 @@ public class ProductCategory {
 
     private String description;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("category")
     @OneToMany(mappedBy = "category")
     private List<Product> products;
 

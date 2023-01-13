@@ -25,10 +25,27 @@ public class ApplicationStartUp {
             if (ObjectUtils.isEmpty(category)) {
                 ProductCategory category1 = productCategoryRepository.save(ProductCategory.builder().name("Computer").build());
                 ProductCategory category2 = productCategoryRepository.save(ProductCategory.builder().name("Phone").build());
+                ProductCategory category3 = productCategoryRepository.save(ProductCategory.builder().name("Tablet").build());
+                ProductCategory category4 = productCategoryRepository.save(ProductCategory.builder().name("TV").build());
+                ProductCategory category5 = productCategoryRepository.save(ProductCategory.builder().name("Camera").build());
                 Product product1 = productRepository.save(Product.builder().name("MacBook").category(category1).build());
                 Product product2 = productRepository.save(Product.builder().name("iPhone").category(category2).build());
+                Product product3 = productRepository.save(Product.builder().name("iPad").category(category3).build());
+                Product product4 = productRepository.save(Product.builder().name("Apple TV").category(category4).build());
+                Product product5 = productRepository.save(Product.builder().name("iPod").category(category5).build());
+                Product product6 = productRepository.save(Product.builder().name("iMac").category(category1).build());
+                Product product7 = productRepository.save(Product.builder().name("Mac Pro").category(category1).build());
+                Product product8 = productRepository.save(Product.builder().name("Mac Mini").category(category1).build());
+                Product product9 = productRepository.save(Product.builder().name("Apple Watch").category(category2).build());
+                Product product10 = productRepository.save(Product.builder().name("Apple Pencil").category(category3).build());
+                Product product11 = productRepository.save(Product.builder().name("Apple TV 4K").category(category4).build());
                 billOfMaterialRepository.save(BillOfMaterial.builder().name("MacBook bill").product(product1).build());
                 billOfMaterialRepository.save(BillOfMaterial.builder().name("iPhone bill").product(product2).build());
+                billOfMaterialRepository.save(BillOfMaterial.builder().name("iPad bill").product(product3).build());
+                billOfMaterialRepository.save(BillOfMaterial.builder().name("Apple TV bill").product(product4).build());
+                billOfMaterialRepository.save(BillOfMaterial.builder().name("iPod bill").product(product5).build());
+                billOfMaterialRepository.save(BillOfMaterial.builder().name("iMac bill").product(product6).build());
+                billOfMaterialRepository.save(BillOfMaterial.builder().name("Mac Pro bill").product(product7).build());
                 ManufacturingOrderProduct manufacturingOrderProduct1 =  ManufacturingOrderProduct.builder().product(product1).quantity(1).build();
                 manufacturingOrderProductRepository.save(manufacturingOrderProduct1);
                 ManufacturingOrderProduct manufacturingOrderProduct2 =  ManufacturingOrderProduct.builder().product(product2).quantity(1).build();

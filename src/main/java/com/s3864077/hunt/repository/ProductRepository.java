@@ -21,6 +21,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     //findByNameContainingIgnoreCase
     @Query("SELECT p FROM Product p where lower(p.name) like lower(concat('%',:name,'%'))")
-    List<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
+    Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
+
+    Page<Product> findProductByCategory(String category, Pageable pageable);
 }
 

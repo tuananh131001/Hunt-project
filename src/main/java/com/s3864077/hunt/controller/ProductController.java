@@ -1,8 +1,10 @@
 package com.s3864077.hunt.controller;
 
+import com.s3864077.hunt.model.BillOfMaterial;
 import com.s3864077.hunt.model.Product;
 import com.s3864077.hunt.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -27,25 +29,23 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts(
-            @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size,
-            @RequestParam(value = "sort", defaultValue = "ASC") Sort.Direction sort) {
-
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort, "name"));
-        return new ResponseEntity<>(productService.getAllProducts(pageable), HttpStatus.OK);
+    public Page<Product> getAllProducts(@RequestParam(value = "page", defaultValue = "0") int page,
+                                        @RequestParam(value = "size", defaultValue = "5") int size,
+                                        @RequestParam(value = "sort", defaultValue = "ASC") Sort.Direction sort,
+                                        @RequestParam(required = false) String category) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort, "id"));
+        if (category != null) {
+            return productService.getAllProductsByCategory(category, pageable);
+        }
+        return productService.getAllProducts(pageable);
     }
+
     // search by name
     @GetMapping("/search")
-    public ResponseEntity<List<Product>> searchProducts(
-            @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size,
-            @RequestParam(value = "sort", defaultValue = "ASC") Sort.Direction sort,
-            @RequestParam(value = "name", defaultValue = "") String name) {
-
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort, "name"));
-        return new ResponseEntity<>(productService.searchProducts(pageable, name), HttpStatus.OK);
+    public Page<Product> searchProducts(@RequestParam String name, Pageable pageable) {
+        return productService.searchProducts(name, pageable);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
@@ -58,8 +58,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@Validated @RequestBody Product product) {
-        return new ResponseEntity<>(productService.createProduct(product), HttpStatus.CREATED);
+    public String createProduct(@Validated @RequestBody Product product) {
+        try {
+            productService.createProduct(product);
+            return "Product created successfully";
+        } catch (Exception e) {
+            return "Product creation failed";
+        }
     }
 
     @PutMapping("/{id}")

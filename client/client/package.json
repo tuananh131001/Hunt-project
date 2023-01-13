@@ -21,6 +21,7 @@
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.41.5",
+    "react-paginate": "^8.1.4",
     "react-router-dom": "^6.6.2",
     "sort-by": "^1.2.0"
   },
