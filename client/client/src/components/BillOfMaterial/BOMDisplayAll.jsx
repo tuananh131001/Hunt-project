@@ -15,7 +15,7 @@ function BOMDisplayAll() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("/bom?page=" + currentPage );
+        const response = await axios.get("/api/bom?page=" + currentPage );
         console.log(response)
         setProductsPage(response.data)
         setProducts(response.data.content);
