@@ -1,4 +1,5 @@
 # Hunt-project
+![image](https://user-images.githubusercontent.com/67695658/217433680-7a3b6f1c-e2cb-488c-ab3f-7e2822eaa556.png)
 
 Deploy link : https://gorgeous-alfajores-c911ed.netlify.app/
 To run on local:    
